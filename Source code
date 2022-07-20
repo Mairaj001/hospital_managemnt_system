@@ -1,0 +1,300 @@
+#include<iostream>
+#include <fstream>
+#include<cstring>
+#include<conio.h>
+#include"unistd.h"
+#include<time.h>
+
+using namespace std;
+class Hospital{
+	private:
+		string address;
+		int no_of_beds,total_bed_res,no_patnt;
+		public:
+			void hospital_detail();
+			
+			
+		
+};
+void Hospital::hospital_detail()
+{
+	
+	cout<<"->Address:plaza 32, street 14 main markaz near Allied bank , G7 Islamabad";
+	cout<<"->No of doctors";
+	cout<<"total beds";
+	cout<<"license no:";
+	cout<<"timings";
+};
+class doctors:public Hospital{
+	public:
+		string doct[6]={"muhammd shaffique","abdullah zafa(heart specialist)","Shabbir khan(family physician)","moiz","ali","haider"};
+		
+	public:
+		
+		int doctor_details();
+		void doct_1();
+		void doct_2();
+		void doct_3();
+		void doct_4();
+		void doct_5();
+		void doct_6();
+		
+};
+int doctors::doctor_details()
+{ 
+        int k;
+          do{
+          	getch();
+		  
+		  cout<<"\nThe availabilty of doctors are\n";
+          for(int i=0;i<6;i++)
+          {
+          	cout<<"\n"<<i+1<<". "<<doct[i];
+		  }
+		
+		  cout<<"\nEnter the key to get details of the doctors:";
+		  cin>>k;
+				  		  
+		  switch(k)//shows timetable of doct
+		  {
+		  	case 1: doct_1();break;
+		  	case 2: doct_2();break;
+		  	case 3: doct_3();break;
+		  	case 4: doct_4();break;
+		  	case 5: doct_5();break;
+		  	case 6: doct_6();break;
+		  		
+		  	
+	}
+		  return k;
+		  
+}while(k!=7);
+}
+
+void doctors::doct_1()
+{
+	string get;
+	ifstream l("1.txt.txt");//doct time
+	getch();
+	system("cls");
+	while(l.good())
+	{
+	system("color a");
+	getline(l,get);sleep(0.75);
+	cout<<get<<endl;
+}
+}
+void doctors::doct_2()//time of doct
+{
+	string get;
+	ifstream l("2.txt.txt");
+	getch();
+	system("cls");
+	while(l.good())
+	{
+	system("color a");
+	getline(l,get);sleep(0.75);
+	cout<<get<<endl;
+}
+
+	
+}
+void doctors::doct_3()//time of doct
+{
+	string get;
+	ifstream l("3.txt.txt");
+	getch();
+	system("cls");
+	while(l.good())
+	{
+	system("color a");
+	getline(l,get);sleep(0.75);
+	cout<<get<<endl;
+}
+}
+void doctors::doct_4()//time doct
+{
+	string get;
+	ifstream l("4.txt.txt");
+	getch();
+//	istream&seekg(streamoff offset, ios_base::seekdir dir);
+//	l.seekg(6,ios::beg);
+//	char m[6];
+//	l.read(m,5);
+//	cout<<m;
+//	system("cls");
+	while(l.good())
+	{
+	system("color a");
+	getline(l,get);sleep(0.75);
+	cout<<get<<endl;
+}
+}
+void doctors::doct_5()//time of doct
+{
+		string get;
+	ifstream l("5.txt.txt");
+	getch();
+	system("cls");
+	while(l.good())
+	{
+	system("color a");
+	getline(l,get);sleep(0.75);
+	cout<<get<<endl;
+}
+	
+}
+void doctors::doct_6()
+{
+		string get;
+	ifstream l("6.txt.txt");
+	getch();
+	system("cls");
+	while(l.good())
+	{
+	system("color a");
+	getline(l,get);sleep(0.75);
+	cout<<get<<endl;
+}
+};
+class patient:public doctors
+{
+	private:
+		string bp, id, membership_id,gender,Name,doct_name;
+		int age,price,doct_name_sr;
+		public:
+			int get_calc_price_doct();
+			void get_data_stream();
+			void out_data_strea();// output all data
+			void out_indivisual();//output br indivisual
+		    void delete_data();
+		    
+			
+			
+		
+};
+void patient::get_data_stream()
+{
+		ofstream input;
+				input.open("pateint detail.txt");
+		
+				cout<<"Enter the id of the patient:";
+				getline(cin,id);   input<<id<<endl;
+				
+				cout<<"Enter the name :";
+			  	getline(cin,Name);    input<<Name<<endl;
+
+				cout<<"Enter the membership id of the patient:";
+				getline(cin,membership_id);  input<<membership_id<<endl;
+				
+				cout<<"Enter the gender:";
+				getline(cin,gender);    input<<gender<<endl;
+				
+				cout<<"Enter the age:";
+				cin>>age;               input<<age<<endl;
+				
+				cout<<"Enter the blood pressure:";
+				getline(cin,bp);        input<<bp<<endl;
+				
+				cout<<"select  the doctor for consult";
+				doctors::doctor_details();
+				
+				cout<<"Enter the sr also";   cin>>doct_name_sr;
+				cout<<"Enter the name also";
+				getline(cin,doct_name);  input<<doct_name<<endl;
+				cout<<"price is generated autoamtically";
+				int s=get_calc_price_doct();
+				input<<s<<endl;
+				input.close();
+}
+int  patient::get_calc_price_doct()
+{
+	
+	if(1==doct_name_sr)
+	{
+		price=1000;
+	}
+	else if(2==doct_name_sr)
+	{
+		price=1200;
+		return price;
+	}
+	else if(3==doct_name_sr)
+	{
+		price=1000;
+		return price;
+	}
+	else if(4==doct_name_sr)
+	{
+		price=1600;
+		return price;
+	}
+	
+}
+void patient::out_data_strea()//working part 
+{
+	system("cls");
+	cout<<"THe deatils are ";
+	ifstream get;
+	get.open("pateint detail.txt");
+	string k;
+	while(get.good())
+	{
+		// will work on it in progress
+	}
+	
+	
+}
+
+class admin: public patient{
+	string user_name,pass;
+	public:
+		void Admin();// all data contains admin by above class
+		void passwrd();
+};
+void admin::passwrd()
+{
+
+	cout<<"->Username=";  cin>>user_name;
+	cout<<"->password=";  cin>>pass;
+	if(user_name=="admin"&&pass=="admin123")
+	{
+		
+		cout<<"login successfull>>>>>>>>>";
+	}
+	else
+	exit(0);
+	
+}
+void admin::Admin(){
+	int k;
+	do{
+	
+	cout<<"\n\n\t\t***************************************";
+	cout<<"\n\t\t\tA D M I N";
+	cout<<"\n\n\t\t***************************************";
+	cout<<"\n1.See doctor TimeTable";
+	cout<<"\n2.Resereve patient appointment:";
+	cout<<"\n3.See details of the patient";
+	cout<<"\n4.See by individual";
+	cout<<"\n4.See hospital deatils";
+	cin>>k;
+	switch(k)
+	{
+		case 1: admin::doctor_details();break;
+		case 2: admin::get_data_stream();break;
+//		case 3: admin::out_data_strea();break;
+//		case 4: admin::out_indivisual();break;
+		case 5: admin::hospital_detail();break;
+	}
+}while(k!=6);
+}
+
+
+int main()
+{
+	admin a;
+	a.passwrd();
+	a.Admin();
+
+}
